@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form | Dan Aleko</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      color: #000; /* Set default text color to black */
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color:purple;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .wrapper {
+      width: 420px;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, .2);
+      backdrop-filter: blur(9px);
+      color: #000; /* Text color */
+      border-radius: 12px;
+      padding: 30px 40px;
+    }
+
+    .wrapper h1 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .wrapper .input-box {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      margin: 30px 0;
+    }
+
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: 2px solid #000; /* Black border */
+      outline: none;
+      border-radius: 40px;
+      font-size: 16px;
+      padding: 20px 45px 20px 20px;
+    }
+
+    .input-box input::placeholder {
+      color: #000; /* Placeholder text color */
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 20px;
+      top: 30%;
+      transform: translate(-50%);
+      font-size: 20px;
+    }
+
+    .wrapper .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14.5px;
+      margin: -15px 0 15px;
+    }
+
+    .remember-forgot label input {
+      accent-color: #000;
+      margin-right: 3px;
+    }
+
+    .remember-forgot a {
+      text-decoration: none;
+    }
+
+    .remember-forgot a:hover {
+      text-decoration: underline;
+    }
+
+    .wrapper .btn {
+      width: 100%;
+      height: 45px;
+      background: #fff;
+      border: 2px solid #000; /* Black border */
+      outline: none;
+      border-radius: 40px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .wrapper .register-link {
+      font-size: 14.5px;
+      text-align: center;
+      margin: 20px 0 15px;
+    }
+
+    .register-link p a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .register-link p a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <form id="loginForm" onsubmit="submitForm(event, true)">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox">Remember Me</label>
+        <a href="#">Forgot Password</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="register-link">
+        <p>Don't have an account? <a href="#">Register</a></p>
+      </div>
+    </form>
+  </div>
+  <script>
+    function login(event) {
+        event.preventDefault();
+
+        // Get form data
+        const enteredUsername = document.getElementById("username").value;
+        const enteredPassword = document.getElementById("password").value;
+
+        // Retrieve stored credentials from local storage
+        const storedUsername = localStorage.getItem("username");
+        const storedPassword = localStorage.getItem("password");
+
+        // Check if stored credentials exist and match the entered credentials
+        if (storedUsername && storedPassword &&
+            enteredUsername === storedUsername &&
+            enteredPassword === storedPassword) {
+            alert("Login successful!");
+
+            // Redirect to index.html
+          // Redirect to index.html
+        window.location.href = "{{ url_for('index') }}";
+// Assuming index.html is in the root directory
+        } else {
+            alert("Invalid credentials. Please try again.");
+        }
+    }
+</script>
+
+<script>
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+  </script>
+  
+</body>
+</html>
